@@ -5,13 +5,14 @@ output:
   bookdown::pdf_document2:
     toc: false
     template: eisvogel
+    keep_tex: true
 linkcolor: "blue"
 ---
 
 Thank you for submitting your work for publication in Biometrical Journal. Before you resubmit your revised manuscript and supplement, we would like to ask you to carefully read through the following checklist to make sure that your mandatory code and data supplement complies with our standards for computational reproducibility.
 
 If you prefer concrete examples over a checklist, please refer to Section \@ref(exemplary-supplements) for links to published articles which follow best practices in dealing with frequently encountered challenges.\
-If you have any questions on how top prepare your supplement, please contact one of the RR editors Roman Hornung [(`hornung@ibe.med.uni-muenchen.de`)](mailto:hornung@ibe.med.uni-muenchen.de) or Fabian Scheipl [(`fabian.scheipl@lmu`)](mailto:fabian.scheipl@lmu.de).
+If you have any questions on how top prepare your supplement, please contact one of the RR editors Roman Hornung [(`hornung@ibe.med.uni-muenchen.de`)](mailto:hornung@ibe.med.uni-muenchen.de), Lien Le [(`le.dunglien@gmail.com`)](mailto:le.dunglien@gmail.com) or Fabian Scheipl [(`fabian.scheipl@lmu`)](mailto:fabian.scheipl@lmu.de).
 
 # MAIN POINTS
 
