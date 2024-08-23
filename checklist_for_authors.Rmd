@@ -4,7 +4,7 @@ date: "`r Sys.Date()`"
 output: 
   bookdown::pdf_document2:
     toc: false
-    template: Z:/Sonstiges/RRBiomJournal/rr_review_template/eisvogel.latex
+    template: eisvogel
     keep_tex: true
 linkcolor: "blue"
 ---
