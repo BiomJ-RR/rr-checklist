@@ -1,0 +1,501 @@
+%%
+% Copyright (c) 2017 - 2021, Pascal Wagler;
+% Copyright (c) 2014 - 2021, John MacFarlane
+%
+% All rights reserved.
+%
+% Redistribution and use in source and binary forms, with or without
+% modification, are permitted provided that the following conditions
+% are met:
+%
+% - Redistributions of source code must retain the above copyright
+% notice, this list of conditions and the following disclaimer.
+%
+% - Redistributions in binary form must reproduce the above copyright
+% notice, this list of conditions and the following disclaimer in the
+% documentation and/or other materials provided with the distribution.
+%
+% - Neither the name of John MacFarlane nor the names of other
+% contributors may be used to endorse or promote products derived
+% from this software without specific prior written permission.
+%
+% THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+% "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+% LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+% FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+% COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+% INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+% BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+% LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+% CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+% LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+% ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+% POSSIBILITY OF SUCH DAMAGE.
+%%
+
+%%
+% This is the Eisvogel pandoc LaTeX template.
+%
+% For usage information and examples visit the official GitHub page:
+% https://github.com/Wandmalfarbe/pandoc-latex-template
+%%
+
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames*,x11names*,table}{xcolor}
+%
+\let\footref\relax
+\documentclass[
+  paper=a4,
+  ,captions=tableheading
+]{scrartcl}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{setspace}
+\setstretch{1.2}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\definecolor{default-linkcolor}{HTML}{A50000}
+\definecolor{default-filecolor}{HTML}{A50000}
+\definecolor{default-citecolor}{HTML}{4077C0}
+\definecolor{default-urlcolor}{HTML}{4077C0}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Biometrical Journal - Checklist for Code and Data Supplements},
+  colorlinks=true,
+  linkcolor=blue,
+  filecolor=default-filecolor,
+  citecolor=default-citecolor,
+  urlcolor=default-urlcolor,
+  breaklinks=true,
+  pdfcreator={LaTeX via pandoc with the Eisvogel template}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=2.5cm,includehead=true,includefoot=true,centering,]{geometry}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+% add backlinks to footnote references, cf. https://tex.stackexchange.com/questions/302266/make-footnote-clickable-both-ways
+\usepackage{footnotebackref}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+
+% Make use of float-package and set default placement for figures to H.
+% The option H means 'PUT IT HERE' (as  opposed to the standard h option which means 'You may put it here if you like').
+\usepackage{float}
+\floatplacement{figure}{H}
+
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Biometrical Journal - Checklist for Code and Data Supplements}
+\author{}
+\date{2025-10-17}
+
+
+
+%%
+%% added
+%%
+
+%
+% language specification
+%
+% If no language is specified, use English as the default main document language.
+%
+
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[shorthands=off,main=english]{babel}
+\else
+    % Workaround for bug in Polyglossia that breaks `\familydefault` when `\setmainlanguage` is used.
+  % See https://github.com/Wandmalfarbe/pandoc-latex-template/issues/8
+  % See https://github.com/reutenauer/polyglossia/issues/186
+  % See https://github.com/reutenauer/polyglossia/issues/127
+  \renewcommand*\familydefault{\sfdefault}
+    % load polyglossia as late as possible as it *could* call bidi if RTL lang (e.g. Hebrew or Arabic)
+  \usepackage{polyglossia}
+  \setmainlanguage[]{english}
+\fi
+
+
+
+%
+% for the background color of the title page
+%
+
+%
+% break urls
+%
+\PassOptionsToPackage{hyphens}{url}
+
+%
+% When using babel or polyglossia with biblatex, loading csquotes is recommended
+% to ensure that quoted texts are typeset according to the rules of your main language.
+%
+\usepackage{csquotes}
+
+%
+% captions
+%
+\definecolor{caption-color}{HTML}{777777}
+\usepackage[font={stretch=1.2}, textfont={color=caption-color}, position=top, skip=4mm, labelfont=bf, singlelinecheck=false, justification=raggedright]{caption}
+\setcapindent{0em}
+
+%
+% blockquote
+%
+\definecolor{blockquote-border}{RGB}{221,221,221}
+\definecolor{blockquote-text}{RGB}{119,119,119}
+\usepackage{mdframed}
+\newmdenv[rightline=false,bottomline=false,topline=false,linewidth=3pt,linecolor=blockquote-border,skipabove=\parskip]{customblockquote}
+\renewenvironment{quote}{\begin{customblockquote}\list{}{\rightmargin=0em\leftmargin=0em}%
+\item\relax\color{blockquote-text}\ignorespaces}{\unskip\unskip\endlist\end{customblockquote}}
+
+%
+% Source Sans Pro as the de­fault font fam­ily
+% Source Code Pro for monospace text
+%
+% 'default' option sets the default
+% font family to Source Sans Pro, not \sfdefault.
+%
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+    \usepackage[default]{sourcesanspro}
+  \usepackage{sourcecodepro}
+  \else % if not pdftex
+    \usepackage[default]{sourcesanspro}
+  \usepackage{sourcecodepro}
+
+  % XeLaTeX specific adjustments for straight quotes: https://tex.stackexchange.com/a/354887
+  % This issue is already fixed (see https://github.com/silkeh/latex-sourcecodepro/pull/5) but the
+  % fix is still unreleased.
+  % TODO: Remove this workaround when the new version of sourcecodepro is released on CTAN.
+  \ifxetex
+    \makeatletter
+    \defaultfontfeatures[\ttfamily]
+      { Numbers   = \sourcecodepro@figurestyle,
+        Scale     = \SourceCodePro@scale,
+        Extension = .otf }
+    \setmonofont
+      [ UprightFont    = *-\sourcecodepro@regstyle,
+        ItalicFont     = *-\sourcecodepro@regstyle It,
+        BoldFont       = *-\sourcecodepro@boldstyle,
+        BoldItalicFont = *-\sourcecodepro@boldstyle It ]
+      {SourceCodePro}
+    \makeatother
+  \fi
+  \fi
+
+%
+% heading color
+%
+\definecolor{heading-color}{RGB}{40,40,40}
+\addtokomafont{section}{\color{heading-color}}
+% When using the classes report, scrreprt, book,
+% scrbook or memoir, uncomment the following line.
+%\addtokomafont{chapter}{\color{heading-color}}
+
+%
+% variables for title, author and date
+%
+\usepackage{titling}
+\title{Biometrical Journal - Checklist for Code and Data Supplements}
+\author{}
+\date{2025-10-17}
+
+%
+% tables
+%
+
+\definecolor{table-row-color}{HTML}{F5F5F5}
+\definecolor{table-rule-color}{HTML}{999999}
+
+%\arrayrulecolor{black!40}
+\arrayrulecolor{table-rule-color}     % color of \toprule, \midrule, \bottomrule
+\setlength\heavyrulewidth{0.3ex}      % thickness of \toprule, \bottomrule
+\renewcommand{\arraystretch}{1.3}     % spacing (padding)
+
+
+%
+% remove paragraph indention
+%
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+
+%
+%
+% Listings
+%
+%
+
+
+%
+% header and footer
+%
+\usepackage{fancyhdr}
+
+\fancypagestyle{eisvogel-header-footer}{
+  \fancyhead{}
+  \fancyfoot{}
+  \lhead[2025-10-17]{Biometrical Journal - Checklist for Code and Data Supplements}
+  \chead[]{}
+  \rhead[Biometrical Journal - Checklist for Code and Data Supplements]{2025-10-17}
+  \lfoot[\thepage]{}
+  \cfoot[]{}
+  \rfoot[]{\thepage}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+}
+\pagestyle{eisvogel-header-footer}
+
+%%
+%% end added
+%%
+
+
+% Extensions to the Eisvogel theme
+
+% Set colors and font type
+\usepackage{opensans}
+\usepackage{xcolor}
+
+% Set text font color
+\definecolor{fgcolor}{HTML}{333333}
+\color{fgcolor}
+
+% Set background color and font size for inline codes
+\definecolor{bgcolor}{HTML}{F2F4F4}
+\let\oldtexttt\texttt
+\renewcommand{\texttt}[1]{\colorbox{bgcolor}{\small \oldtexttt{#1}}}
+
+
+\begin{document}
+
+%%
+%% begin titlepage
+%%
+
+%%
+%% end titlepage
+%%
+
+
+
+Thank you for submitting your work for publication in Biometrical Journal. Before you resubmit your revised manuscript and supplement, we would like to ask you to carefully read through the following checklist to make sure that your mandatory code and data supplement complies with our standards for computational reproducibility.
+
+If you prefer concrete examples over a checklist, please refer to Section \ref{exemplary-supplements} for links to published articles which follow best practices in dealing with frequently encountered challenges.\\
+If you have any questions on how top prepare your supplement, please contact one of the RR editors Boris Hejblum (\href{mailto:boris.hejblum@u-bordeaux.fr}{\nolinkurl{boris.hejblum@u-bordeaux.fr}}), Roman Hornung (\href{mailto:hornung@ibe.med.uni-muenchen.de}{\nolinkurl{hornung@ibe.med.uni-muenchen.de}}), Michael Kammer (\href{mailto:michael.kammer@meduniwien.ac.at}{\nolinkurl{michael.kammer@meduniwien.ac.at}}) or Theresa Ullmann (\href{mailto:theresa.ullmann@meduniwien.ac.at}{\nolinkurl{theresa.ullmann@meduniwien.ac.at}}).
+
+\section{MAIN POINTS}\label{main-points}
+
+\begin{itemize}
+\item[$\square$]
+  We have verified that re-running the supplement's code on the supplement's data according to the instructions in the included \texttt{README} file (see Section \ref{documentation}) reproduces \emph{all} figures, tables and results in the submitted article and its supplementary material.\\
+  Please refer to Section \ref{reproducibility} for details.\\
+  \emph{Please actually do this before submitting -- let one of your co-authors try to reproduce the results on their own machine with your supplement.}
+\item[$\square$]
+  We have revised, cleaned up and documented the code files in this supplement to make sure that they follow commonly accepted standards for scientific computing.\\
+  Please refer to Section \ref{coding-standards} for details.
+\item[$\square$]
+  The code and data supplement has been uploaded to ManuscriptCentral as a single zip file containing all the scripts, programs, data files, intermediate results and a \texttt{README} file. Large data or results files that surpass ManuscriptCentral's file size limits are available from external repositories and linked to and documented in the \texttt{README} file.
+\end{itemize}
+
+\section{REPRODUCIBILITY}\label{reproducibility}
+
+\begin{itemize}
+\item[$\square$]
+  The code and data supplement contains \emph{all} code and data needed to reproduce \emph{all} figures, tables and other results in the article and its supplementary material.
+\item
+  The code files make it \textbf{as easy as possible to reproduce the results} in the manuscript:
+
+  \begin{itemize}
+  \item[$\square$]
+    For simulation scripts that need to be run repeatedly with multiple settings, the supplement includes master scripts or Makefiles that perform these iterations and collates and saves the intermediate results of the separate runs with descriptive filenames in a separate results folder. Such ``master scripts'' can also be literate programming documents, i.e., Jupyter Notebooks, Sweave, R Markdown, etc.
+  \item[$\square$]
+    Reproducing our simulation results does not require repeated manual edits to the simulation code itself.
+  \item[$\square$]
+    The supplement does not include multiple almost-identical copies of the same simulation scripts with slight modifications for the different simulation settings or different methods being compared (no ``copy-paste''-programming). See Section \ref{coding-standards}.
+  \end{itemize}
+\item
+  The code files make it \textbf{as easy as possible to associate the outputs} of the code with the results in the manuscript:
+
+  \begin{itemize}
+  \item[$\square$]
+    They include comments clearly stating which figure or table in the manuscript is produced by which section of code.
+  \item[$\square$]
+    They create dataframes or tables with identical structure, column names, and row names as the tables in the manuscript and automatically save them with unique, descriptive filenames in a separate results folder.\\
+    Filenames that correspond to the numbering of the tables in the manuscript and supplementary material are preferred.
+  \item[$\square$]
+    They save graphical output automatically in a separate results folder with unique, descriptive filenames.\\
+    Filenames that correspond to the numbering of the figures in the manuscript and supplementary material are preferred.
+  \end{itemize}
+\item
+  Randomization results are reproducible:
+
+  \begin{itemize}
+  \tightlist
+  \item[$\square$]
+    Any code whose output relies on results of a random number generator (RNG) is initialized by setting the seed for the RNG so that results are exactly reproducible and are identical to the results contained in the manuscript and its supplementary material.
+  \item[$\square$]
+    By re-running any code that relies on results of a random number generator (RNG) multiple times, we have verified that the Monte Carlo errors of the summarized results are negligible and do not affect any of the substantive conclusions drawn from them (e.g., rank orders of different methods according to the relevant performance criteria do not change when simulation studies are re-run).
+  \end{itemize}
+\item
+  If data sets are not allowed to be published or shared: (\emph{check all that apply})
+
+  \begin{itemize}
+  \tightlist
+  \item[$\square$]
+    Synthetic or suitably anonymized pseudo-data comparable to the original data in size and structure have been included.
+  \item[$\square$]
+    The original data has been made available to RR editors strictly for the purpose of the reproducibility audit in a separate file.
+  \end{itemize}
+\item
+  If the computations required for reproduction of the article's results run for more than a couple of hours on a standard desktop PC:
+
+  \begin{itemize}
+  \tightlist
+  \item[$\square$]
+    The code supplement provides intermediate results and the scripts used to produce the figures/tables from them and information on which parameters to change to reduce the run time, where applicable. If files containing intermediate results are too large to upload to ManuscriptCentral or e-mail, please upload them to a data repository (Zenodo, Figshare, etc) or share them via a file hoster\footnote{\ldots{} one that does not require a user account for access, i.e., \emph{not} OneDrive}. If results files cannot be made publicly available, we can set up a secure file sharing link as well. Please contact the RR editors if required.
+  \item[$\square$]
+    We have verified that the code and intermediate results in the supplement enable spot checks of reproducibility for specific settings/replications without the need to re-run the entire simulation study. The code and its saved intermediate results are structured so that it is easy to quickly re-run specific parts of the experiment and verify that the results are identical to the saved intermediate results supplied by the authors.
+  \end{itemize}
+\end{itemize}
+
+\section{DOCUMENTATION}\label{documentation}
+
+The \texttt{README} file \ldots{}
+
+\begin{itemize}
+\item[$\square$]
+  is a \texttt{.txt}, HTML or PDF file.
+\item[$\square$]
+  contains version information for all the software (i.e., operating system version and version info for statistical libraries, utilities, compilers, and add-on packages, whatever is applicable) used anywhere in the scripts in the supplement. For R: contains the output of \texttt{sessionInfo()} after loading all packages that are required anywhere in the supplement.\\
+  Alternatively, authors can provide a reproducible computation environment in the form of a Docker container, a \texttt{renv}, \texttt{checkpoint} or \texttt{packrat} snapshot for \texttt{R}, etc.
+  For R packages only available on Github etc, please also provide the relevant commit hash (or release tag, preferably) and installation instructions.
+\item[$\square$]
+  explains which scripts to run in which order in order to reproduce which of the figures and tables in the paper and its supplements.\\
+  (This is not necessary if the supplement contains a suitably documented master script or uses a dependency graph system like \texttt{R}'s \texttt{drake} or \texttt{targets} packages or a \texttt{Makefile}.)
+\item[$\square$]
+  clearly describes any manual alterations to the code required for reproducing the results, with reference to the respective file names, line numbers, and the exact content of the necessary edits. \textbf{If at all possible, such manual edits must be avoided} by including suitable master scripts or Makefiles instead.
+\item[$\square$]
+  contains full documentation for all data sets including their provenance, information about intellectual property holders or licensing terms, and (links to) data dictionaries defining their content.
+\item[$\square$]
+  contains a listing of the files and folder structure with brief explanations of their content.
+\end{itemize}
+
+\section{CODING STANDARDS}\label{coding-standards}
+
+\begin{itemize}
+\item[$\square$]
+  All source code is submitted in ASCII files, preferably in UTF-8 encoding.
+\item[$\square$]
+  All names of files, functions, macros and variables and all code comments are in English.
+\item[$\square$]
+  All code files use a consistent, sensible format and style with
+
+  \begin{itemize}
+  \tightlist
+  \item
+    proper spacing (spaces after commas and around operators, etc.),
+  \item
+    human-readable line lengths (max. 80-100 characters per line),
+  \item
+    semantically correct \& consistent indentation.
+  \end{itemize}
+\item[$\square$]
+  Code files are organized well:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Code is split into separate files according to functionality with informative, descriptive names.
+  \item
+    The supplement uses a sensible folder structure with informative, descriptive names.
+  \item
+    R script files are saved in files with file extension \texttt{.r} or \texttt{.R}, SAS scripts as \texttt{.sas}, Stata programs as \texttt{.ado} or \texttt{.do}, etc. Code is never saved in \texttt{.txt} files, PDFs, word processor documents and similar file formats.
+  \end{itemize}
+\item[$\square$]
+  All functions and macros defined in the code supplement are properly documented with text definitions of all their inputs and outputs.
+\item[$\square$]
+  The supplement does not include multiple almost-identical copies of scripts with slight modifications to iterate through different settings. Instead, code reused multiple times is contained in suitably defined functions or macros, which are repeatedly called for the different settings. \textbf{The supplement does not contain error-prone, excessively long and unreadable ``copy-paste'' code.}~This also means using for-loops or other iterators (in R: \texttt{Map()}, \texttt{apply()}, etc) to iterate over settings instead of copying the same command with slightly different arguments for each setting many times.
+\item[$\square$]
+  For simulation experiments that need to be run repeatedly with different settings, the supplement either includes master scripts or Makefiles that perform these iterations and collate and save the intermediate results of the separate runs with informative, descriptive file names, or the simulation code itself performs replication, collection, and saving of results in a transparent, well documented manner. In either case, \textbf{reproducing the simulation results does not require repeated manual edits to the simulation scripts themselves, nor any manual collection of results from console output.}
+\item[$\square$]
+  Code files do not contain a mixture of code that performs the analysis with code that defines the functions or macros used in the analysis. Code files are split into a) files providing function or macro definitions and b) scripts that load these definitions (in R: via \texttt{source()}) and run the analyses or simulations.
+\item[$\square$]
+  Code files do not contain extraneous or outdated code. All scripts and function definitions only contain code relevant for reproducing the published results. No lines that are commented out nor code that is not actually used is contained in the supplement.
+\item[$\square$]
+  Code files do not contain commands that affect users' global workspace or software installation unnecessarily. They don't automatically (re-)install packages, only load them. They do not delete the entire user workspace (in R: no \texttt{rm(list=\ ls())}) and do not set or modify any system variables.
+\item[$\square$]
+  Code files do not contain any absolute paths and only use paths relative to the current file or working directory, if the latter is specified in your \texttt{README} and script.\\
+  (i.e., no paths like \texttt{C:/Dropbox/BiomJ-paper/Final\ Revision/My\ Code.R}, use paths like \texttt{./simulation\_1.R} or \texttt{../config/params.txt} instead). If this is impossible, the \texttt{README} file provides file names and line numbers of specifically where and how to change any absolute paths .
+\item[$\square$]
+  Code is as platform-independent as possible.~
+  In R, avoid OS-specific commands such as \texttt{windows()} or \texttt{windowsFonts()} and use \texttt{file.path()} to make folder separators platform-independent. If the code supplement contains R packages, they should not be submitted as binaries (i.e., \texttt{.zip}-files) but as package bundles (file ending \texttt{.tar.gz}) or source packages instead . Mac and Windows users should verify that capitalization in all file paths is correct so that they work as intended for UNIX-based operating systems which have case-sensitive paths.
+\item
+  For code in compiled languages (C, C++, FORTRAN, etc.):
+
+  \begin{itemize}
+  \tightlist
+  \item[$\square$]
+    The supplement includes both the documented source code and suitable \texttt{Makefile}s or complete compilation and installation instructions, as well as pre-compiled executables.
+  \end{itemize}
+\end{itemize}
+
+\section{EXEMPLARY SUPPLEMENTS}\label{exemplary-supplements}
+
+Some links to accepted manuscripts which largely follow best practices and deal with frequently encountered challenges:
+
+\begin{itemize}
+\tightlist
+\item
+  a well structured supplement for a manuscript containing both real data analyses and fairly complex simulations, which also provides intermediate results for computationally intensive simulation experiments:\\
+  Günther, F., Brandl, C., Heid, I. M., \& Küchenhoff, H. (2019). Response misclassification in studies on bilateral diseases. \emph{Biometrical Journal}, \textbf{61}(4), 1033--1048. \href{https://onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1002\%2Fbimj.201900039&file=bimj2010-sup-0002-Code-and-Data.zip}{Supplement (30 MB)}
+\item
+  a supplement using \texttt{Rmarkdown} files to simplify reproduction of results, with optional re-loading of author-supplied intermediate results for computationally intensive steps:\\
+  Kopp‐Schneider, A., Calderazzo, S., \& Wiesenfarth, M. (2020). Power gains by using external information in clinical trials are typically not possible when requiring strict type I error control. \emph{Biometrical Journal}, \textbf{62}(2), 361--374. \href{https://onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1002\%2Fbimj.201800395&file=bimj2027-sup-0001-Code.zip}{Supplement (1 MB)}
+\item
+  a well structured supplement for a manuscript for which only synthetic pseudo-data is publicly available due to data sharing restrictions:\\
+  Heller, G.Z., Couturier, D.‐L., Heritier, S.R (2019). Beyond mean modelling: Bias due to misspecification of dispersion in Poisson‐inverse Gaussian regression. \emph{Biometrical Journal}, \textbf{61}(2), 333--342 \href{https://onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1002\%2Fbimj.201700218&file=bimj1892-sup-0001-SupMat.zip}{Supplement (7 MB)}
+\item
+  a well structured supplement providing large data sets from an external source:\\
+  Rui, R., \& Tian, M. (2021). Joint estimation of case fatality rate of COVID‐19 and power of quarantine strategy performed in Wuhan, China. \emph{Biometrical Journal}, \textbf{63}(1), 46--58. \href{https://onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1002\%2Fbimj.202000116&file=bimj2197-sup-0001-SuppMat.zip}{Supplement (2.4 MB)}
+\end{itemize}
+
+\end{document}
